@@ -1,4 +1,4 @@
-'use-client';
+'use client';
 
 import { Icons } from '@/components/Icons';
 import { Button, buttonVariants } from '@/components/ui/button';
@@ -9,7 +9,6 @@ import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 
 import { TAuthCredentialsValidator, AuthCredentialsValidator } from '@/lib/validators/account-credentials-validator';
 
@@ -21,7 +20,7 @@ const Page = () => {
   } = useForm<TAuthCredentialsValidator>({ resolver: zodResolver(AuthCredentialsValidator) });
 
   const onSubmit = ({ email, password }: TAuthCredentialsValidator) => {
-    
+    return console.log('yay');
   };
 
   return (
