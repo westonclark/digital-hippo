@@ -33,6 +33,7 @@ export const authRouter = router({
       },
     });
 
+    // return status to client
     return { sucsess: true, sentToEmail: email };
   }),
 });
