@@ -4,7 +4,7 @@ import { mongooseAdapter } from '@payloadcms/db-mongodb';
 import { slateEditor } from '@payloadcms/richtext-slate';
 import path from 'path';
 import dotenv from 'dotenv';
-import { Users } from './collections/Users';
+import { Users } from './collections/users';
 
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),
