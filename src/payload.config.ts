@@ -3,9 +3,8 @@ import { webpackBundler } from '@payloadcms/bundler-webpack';
 import { mongooseAdapter } from '@payloadcms/db-mongodb';
 import { slateEditor } from '@payloadcms/richtext-slate';
 import path from 'path';
-// import { Users } from './collections/Users';
+import { Users } from '@/collections/Users';
 import dontenv from 'dotenv';
-import { Users } from './collections/Users';
 
 dontenv.config({
   path: path.resolve(__dirname, '../.env'),
