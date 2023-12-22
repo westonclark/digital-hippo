@@ -3,10 +3,14 @@ import { webpackBundler } from '@payloadcms/bundler-webpack';
 import { mongooseAdapter } from '@payloadcms/db-mongodb';
 import { slateEditor } from '@payloadcms/richtext-slate';
 import path from 'path';
-import { Users } from '@/collections/Users';
-import dontenv from 'dotenv';
+import { Users } from './collections/Users';
+import dotenv from 'dotenv';
+// import { Products } from './collections/Products/Products';
+// import { Media } from './collections/Media';
+// import { ProductFiles } from './collections/ProductFile';
+// import { Orders } from './collections/Orders';
 
-dontenv.config({
+dotenv.config({
   path: path.resolve(__dirname, '../.env'),
 });
 
@@ -22,7 +26,7 @@ export default buildConfig({
     meta: {
       titleSuffix: '- DigitalHippo',
       favicon: '/favicon.ico',
-      ogImage: 'thumbnail.jpg',
+      ogImage: '/thumbnail.jpg',
     },
   },
   rateLimit: {
@@ -33,6 +37,6 @@ export default buildConfig({
     url: process.env.MONGODB_URL!,
   }),
   typescript: {
-    outputFile: path.resolve(__dirname, 'paylaod-types.ts'),
+    outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
 });
