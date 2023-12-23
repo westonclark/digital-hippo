@@ -29,7 +29,7 @@ const Navbar = () => {
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                   {user ? null : (
-                    <Link href="/signin" className={buttonVariants({ variant: 'ghost' })}>
+                    <Link href="/sign-in" className={buttonVariants({ variant: 'ghost' })}>
                       Sign in
                     </Link>
                   )}
