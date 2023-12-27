@@ -28,8 +28,6 @@ const ProductReel = (props: ProductReelProps) => {
     }
   );
 
-  console.log(queryResults);
-
   const products = queryResults?.pages.flatMap((page) => page.items);
 
   let map: (Product | null)[] = [];
