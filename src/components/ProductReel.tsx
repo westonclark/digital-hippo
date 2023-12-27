@@ -13,7 +13,7 @@ interface ProductReelProps {
   query: TQueryValidator;
 }
 
-const FALLBACK_LIMIT = 10;
+const FALLBACK_LIMIT = 4;
 
 const ProductReel = (props: ProductReelProps) => {
   const { title, subtitle, href, query } = props;
@@ -38,8 +38,6 @@ const ProductReel = (props: ProductReelProps) => {
   } else if (isLoading) {
     map = new Array<null>(query.limit ?? FALLBACK_LIMIT).fill(null);
   }
-
-//   console.log(products);
 
   return (
     <section className="py-12">
