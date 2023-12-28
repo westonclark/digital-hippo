@@ -9,7 +9,6 @@ export const paymentRouter = router({
   createSession: privateProcedure.input(z.object({ productIds: z.array(z.string()) })).mutation(async ({ ctx, input }) => {
     const { user } = ctx;
     let { productIds } = input;
-    console.log(productIds);
 
     if (productIds.length === 0) {
       throw new TRPCError({ code: 'BAD_REQUEST' });
@@ -37,11 +36,11 @@ export const paymentRouter = router({
       },
     });
 
-    const line_items = [] as Stripe.Checkout.SessionCreateParams.LineItem[];
+    const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
 
     filteredProducts.forEach((product) => {
       line_items.push({
-        price: product.priceId! as string,
+        price: product.priceId!,
         quantity: 1,
       });
     });
@@ -58,7 +57,7 @@ export const paymentRouter = router({
       const stripeSession = await stripe.checkout.sessions.create({
         success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/thank-you?orderId=${order.id}`,
         cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/cart`,
-        payment_method_types: ['card', 'paypal'],
+        payment_method_types: ['card'],
         mode: 'payment',
         metadata: {
           userId: user.id,
