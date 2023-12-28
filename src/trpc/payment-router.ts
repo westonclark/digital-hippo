@@ -36,17 +36,17 @@ export const paymentRouter = router({
       },
     });
 
-    const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
+    const line_items = [] as Stripe.Checkout.SessionCreateParams.LineItem[];
 
     filteredProducts.forEach((product) => {
       line_items.push({
-        price: product.priceId!,
+        price: product.priceId! as string,
         quantity: 1,
       });
     });
 
     line_items.push({
-      price: 'price_1OCeBwA19umTXGu8s4p2G3aX',
+      price: 'price_1OSQ9eF8SUE03ssmNqJxKjGw',
       quantity: 1,
       adjustable_quantity: {
         enabled: false,
