@@ -3,15 +3,13 @@ import { publicProcedure, router } from './trpc';
 import { getPayloadClient } from '../get-payload';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
-import payload from 'payload';
 
 export const authRouter = router({
   createPayloadUser: publicProcedure.input(AuthCredentialsValidator).mutation(async ({ input }) => {
     const { email, password } = input;
-
     const payload = await getPayloadClient();
 
-    // check if user exists
+    // check if user already exists
     const { docs: users } = await payload.find({
       collection: 'users',
       where: {
@@ -21,11 +19,8 @@ export const authRouter = router({
       },
     });
 
-    if (users.length !== 0) {
-      throw new TRPCError({ code: 'CONFLICT' });
-    }
+    if (users.length !== 0) throw new TRPCError({ code: 'CONFLICT' });
 
-    // create a new user
     await payload.create({
       collection: 'users',
       data: {
@@ -35,8 +30,7 @@ export const authRouter = router({
       },
     });
 
-    // return status to client
-    return { sucsess: true, sentToEmail: email };
+    return { success: true, sentToEmail: email };
   }),
 
   verifyEmail: publicProcedure.input(z.object({ token: z.string() })).query(async ({ input }) => {
@@ -49,15 +43,15 @@ export const authRouter = router({
       token,
     });
 
-    if (!isVerified) {
-      throw new TRPCError({ code: 'UNAUTHORIZED' });
-    }
-    return { sucsess: true };
+    if (!isVerified) throw new TRPCError({ code: 'UNAUTHORIZED' });
+
+    return { success: true };
   }),
 
   signIn: publicProcedure.input(AuthCredentialsValidator).mutation(async ({ input, ctx }) => {
     const { email, password } = input;
     const { res } = ctx;
+
     const payload = await getPayloadClient();
 
     try {
@@ -69,8 +63,9 @@ export const authRouter = router({
         },
         res,
       });
+
       return { success: true };
-    } catch (error) {
+    } catch (err) {
       throw new TRPCError({ code: 'UNAUTHORIZED' });
     }
   }),

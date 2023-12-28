@@ -9,6 +9,7 @@ export const paymentRouter = router({
   createSession: privateProcedure.input(z.object({ productIds: z.array(z.string()) })).mutation(async ({ ctx, input }) => {
     const { user } = ctx;
     let { productIds } = input;
+    console.log(productIds);
 
     if (productIds.length === 0) {
       throw new TRPCError({ code: 'BAD_REQUEST' });
