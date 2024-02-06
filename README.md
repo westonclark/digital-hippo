@@ -18,7 +18,6 @@ Built with the Next.js 14 App Router, tRPC, TypeScript, Payload & Tailwind
 - ✉️ Beautiful emails for signing up and after purchase
 - ✅ Admins can verify products to ensure high quality
 - ⌨️ 100% written in TypeScript
-- 🎁 ...much more
 
 ## Getting started
 
