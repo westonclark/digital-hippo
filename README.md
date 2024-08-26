@@ -19,16 +19,3 @@ Built with the Next.js 14 App Router, tRPC, TypeScript, Payload & Tailwind
 - ✅ Admins can verify products to ensure high quality
 - ⌨️ 100% written in TypeScript
 
-## Getting started
-
-To get started with this project, run
-
-```bash
-  git clone https://github.com/joschan21/digitalhippo.git
-```
-
-and copy the .env.example variables into a separate .env file, fill them out & and that's all you need to get started!
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
